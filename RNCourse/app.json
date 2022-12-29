@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "RNCourse",
+    "name": "To DO App",
     "slug": "RNCourse",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -19,9 +19,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.github.setouchi-h.to-do-app",
+      "buildNumber": "1.0.0"
     },
     "android": {
+      "package": "com.github.setouchi_h.to_do_app",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -29,6 +33,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fda553f3-d354-40e5-8518-39120a863665"
+      }
     }
   }
 }
