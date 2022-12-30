@@ -20,7 +20,7 @@ function GoalInput(props) {
                 <Image style={styles.image} source={require("../assets/images/goal.png")} />
                 <TextInput
                     style={styles.textInput}
-                    placeholder="Your course goal"
+                    placeholder="What to Do?"
                     onChangeText={goalInputHandler} // if goalInputHandler(), this function excuted as soon as <TextInput> is parsed and evaluated
                     value={enteredGoalText}
                 />
