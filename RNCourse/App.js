@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { StyleSheet, ScrollView, View, FlatList, Button } from "react-native"
 import { StatusBar } from "expo-status-bar"
 import GoalItem from "./components/GoalItem"
 import GoalInput from "./components/GoalInput"
+import { save, remove, loadAll } from "./components/store"
 
 export default function App() {
     const [courseGoals, setCourseGoals] = useState([])
@@ -16,15 +17,26 @@ export default function App() {
         setModalIsVisible(false)
     }
 
-    function addGoalHandler(enteredGoalText) {
+    useEffect(() => {
+        async function initialize() {
+            const initialGoals = await loadAll()
+            setCourseGoals(initialGoals)
+        }
+        initialize()
+    }, [])
+
+    async function addGoalHandler(enteredGoalText) {
+        const id = Date.now()
         setCourseGoals((currentCourseGoals) => [
             ...currentCourseGoals,
-            { text: enteredGoalText, id: Math.random().toString() },
+            { text: enteredGoalText, id },
         ]) // this function automatically receive state by React
+        await save(enteredGoalText, id)
         endAddGoalHandker()
     }
 
     function deleteGoalHandler(id) {
+        remove(id)
         setCourseGoals((currentCourseGoals) => {
             return currentCourseGoals.filter((goal) => goal.id !== id)
         })
